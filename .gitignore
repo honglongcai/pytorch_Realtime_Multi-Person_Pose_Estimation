@@ -8,6 +8,8 @@ data/*
 notebooks/*.pkl
 
 /Outputs
+.idea/
+.DS_Store
 
 # ------------------------------
 
