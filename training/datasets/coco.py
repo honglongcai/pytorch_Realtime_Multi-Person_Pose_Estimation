@@ -21,7 +21,7 @@ def get_loader(json_path, data_dir, mask_dir, inp_size, feat_stride, preprocess,
     """
     with open(json_path) as data_file:
         data_this = json.load(data_file)
-        print(data_this)
+        #print(data_this)
         data = data_this['root']
 
     num_samples = len(data)
@@ -32,13 +32,14 @@ def get_loader(json_path, data_dir, mask_dir, inp_size, feat_stride, preprocess,
             val_indexes.append(count)
         else:
             train_indexes.append(count)
-
+    print('1.....')
     coco_data = Cocokeypoints(root=data_dir, mask_dir=mask_dir,
                               index_list=train_indexes if training else val_indexes,
                               data=data, inp_size=inp_size, feat_stride=feat_stride,
                               preprocess=preprocess, transform=ToTensor(), params_transform=params_transform)
-
+    print('2.....')
     data_loader = sDataLoader(coco_data, batch_size=batch_size,
                               shuffle=shuffle, num_workers=num_workers)
+    print('3.....')
 
     return data_loader
