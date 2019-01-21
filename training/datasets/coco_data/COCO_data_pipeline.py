@@ -221,6 +221,7 @@ class Cocokeypoints(Dataset):
     def __getitem__(self, index):
         idx = self.index_list[index]
         img = cv2.imread(os.path.join(self.root, self.data[idx]['img_paths']))
+        print('img shape:', img.shape())
         img_idx = self.data[idx]['img_paths'][-16:-3]
 #        print img.shape
         if "COCO_val" in self.data[idx]['dataset']:
