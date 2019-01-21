@@ -21,6 +21,7 @@ def get_loader(json_path, data_dir, mask_dir, inp_size, feat_stride, preprocess,
     """
     with open(json_path) as data_file:
         data_this = json.load(data_file)
+        print(data_this)
         data = data_this['root']
 
     num_samples = len(data)
