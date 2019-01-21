@@ -275,28 +275,33 @@ print('val dataset len: {}'.format(len(valid_data.dataset)))
 
 # model
 model = rtpose_shufflenetV2.Network(width_multiplier=1.0)
+print('1.....')
 #model = encoding.nn.DataParallelModel(model, device_ids=args.gpu_ids)
 model = torch.nn.DataParallel(model).cuda()
+print('2.....')
 
  
-writer = SummaryWriter(log_dir=args.logdir)       
+writer = SummaryWriter(log_dir=args.logdir)
+print('3.....')
                                                                                           
 
 trainable_vars = [param for param in model.parameters() if param.requires_grad]
+print('4.....')
 optimizer = torch.optim.SGD(trainable_vars, lr=args.lr,
                            momentum=args.momentum,
                            weight_decay=args.weight_decay,
                            nesterov=args.nesterov)          
-                                                    
+print('5.....')
 lr_scheduler = ReduceLROnPlateau(optimizer, mode='min', factor=0.8, patience=5, verbose=True, threshold=0.0001, threshold_mode='rel', cooldown=3, min_lr=0, eps=1e-08)
 
 best_val_loss = np.inf
-
+print('6.....')
 
 model_save_filename = './network/weight/best_pose_ShuffleNetV2.pth'
 for epoch in range(args.epochs):
 
     # train for one epoch
+    print('7.....')
     train_loss = train(train_data, model, optimizer, epoch)
 
     # evaluate on validation set
