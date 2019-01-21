@@ -149,6 +149,7 @@ def train(train_loader, model, optimizer, epoch):
         #for name, param in model.named_parameters():
         #    writer.add_histogram(name, param.clone().cpu().data.numpy(),i)        
         data_time.update(time.time() - end)
+        print('img size:', img.size())
 
         img = img.cuda()
         heatmap_target = heatmap_target.cuda()
