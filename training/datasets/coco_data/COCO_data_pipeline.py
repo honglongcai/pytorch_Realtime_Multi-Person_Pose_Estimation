@@ -231,6 +231,8 @@ class Cocokeypoints(Dataset):
             mask_miss = cv2.imread(
                 self.mask_dir + 'mask2014/train2014_mask_miss_' + img_idx + 'png', 0)
 #        print self.root + 'mask2014/val2014_mask_miss_' + img_idx + 'png'
+        
+        print('mask_miss shape:', mask_miss.shape)
         meta_data = self.get_anno(self.data[idx])
 
         meta_data = self.add_neck(meta_data)
