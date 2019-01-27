@@ -53,7 +53,7 @@ def make_vgg19_block(block):
                                    kernel_size=v[2], stride=v[3],
                                    padding=v[4])
                 layers += [conv2d, nn.ReLU(inplace=True)]
-    print(len(layers))
+    #print(len(layers))
     return nn.Sequential(*layers)
 
 

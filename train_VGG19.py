@@ -88,7 +88,7 @@ def get_loss(saved_for_loss, heat_temp, heat_weight,
 
     names = build_names()
     saved_for_log = OrderedDict()
-    criterion = nn.MSELoss(size_average=True).cuda()
+    criterion = nn.MSELoss(size_average=True).to('cuda:1')
     #criterion = encoding.nn.DataParallelCriterion(criterion, device_ids=args.gpu_ids)
     total_loss = 0
 
@@ -159,11 +159,11 @@ def train(train_loader, model, optimizer, epoch):
         #    writer.add_histogram(name, param.clone().cpu().data.numpy(),i)        
         data_time.update(time.time() - end)
 
-        img = img.cuda()
-        heatmap_target = heatmap_target.cuda()
-        heat_mask = heat_mask.cuda()
-        paf_target = paf_target.cuda()
-        paf_mask = paf_mask.cuda()
+        img = img.to('cuda:1')
+        heatmap_target = heatmap_target.to('cuda:1')
+        heat_mask = heat_mask.to('cuda:1')
+        paf_target = paf_target.to('cuda:1')
+        paf_mask = paf_mask.to('cuda:1')
         
         # compute output
         _,saved_for_loss = model(img)
@@ -215,11 +215,11 @@ def validate(val_loader, model, epoch):
             # measure data loading time
             data_time.update(time.time() - end)
 
-            img = img.cuda()
-            heatmap_target = heatmap_target.cuda()
-            heat_mask = heat_mask.cuda()
-            paf_target = paf_target.cuda()
-            paf_mask = paf_mask.cuda()
+            img = img.to('cuda:1')
+            heatmap_target = heatmap_target.to('cuda:1')
+            heat_mask = heat_mask.to('cuda:1')
+            paf_target = paf_target.to('cuda:1')
+            paf_mask = paf_mask.to('cuda:1')
         
             # compute output
             _,saved_for_loss = model(img)
@@ -287,9 +287,8 @@ use_vgg(model, args.model_path, 'vgg19')
 
 
 # Fix the VGG weights first, and then the weights will be released
-for i in range(20):
-    for n, param in model.module.model0[i].named_parameters():
-        print(n, param)
+for i in range(27):
+    for param in model.module.model0[i].parameters():
         param.requires_grad = False
 
 trainable_vars = [param for param in model.parameters() if param.requires_grad]
