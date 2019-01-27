@@ -288,8 +288,8 @@ use_vgg(model, args.model_path, 'vgg19')
 
 # Fix the VGG weights first, and then the weights will be released
 for i in range(20):
-    for param in model.module.model0[i].parameters():
-        print('param '+str(i), param)
+    for n, param in model.module.model0[i].named_parameters():
+        print(n, param)
         param.requires_grad = False
 
 trainable_vars = [param for param in model.parameters() if param.requires_grad]
