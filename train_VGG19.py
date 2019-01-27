@@ -35,7 +35,7 @@ parser.add_argument('--momentum', default=0.9, type=float, metavar='M',
 parser.add_argument('--epochs', default=200, type=int, metavar='N',
                     help='number of total epochs to run')
                     
-parser.add_argument('--weight-decay', '--wd', default=0.000, type=float,
+parser.add_argument('--weight-decay', '--wd', default=0.0001, type=float,
                     metavar='W', help='weight decay (default: 1e-4)')  
 parser.add_argument('--nesterov', dest='nesterov', action='store_true')     
                                                    
