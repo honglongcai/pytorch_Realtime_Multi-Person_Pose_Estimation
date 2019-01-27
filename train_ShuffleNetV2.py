@@ -19,7 +19,7 @@ parser.add_argument('--data_dir', default='training/dataset/COCO/images', type=s
                     help='path to where coco images stored') 
 parser.add_argument('--mask_dir', default='training/dataset/COCO/', type=str, metavar='DIR',
                     help='path to where coco images stored')    
-parser.add_argument('--logdir', default='training/extra/tensorboy', type=str, metavar='DIR',
+parser.add_argument('--logdir', default='training/shuffle/tensorboy', type=str, metavar='DIR',
                     help='path to where tensorboard log restore')                                       
 parser.add_argument('--json_path', default='training/dataset/COCO/COCO.json', type=str, metavar='PATH',
                     help='path to where coco images stored')                                      
