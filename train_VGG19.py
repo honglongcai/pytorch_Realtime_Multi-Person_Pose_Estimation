@@ -281,7 +281,7 @@ print('val dataset len: {}'.format(len(valid_data.dataset)))
 # model
 model = get_model(trunk='vgg19')
 #model = encoding.nn.DataParallelModel(model, device_ids=args.gpu_ids)
-model = torch.nn.DataParallel(model).to('cuda')
+model = torch.nn.DataParallel(model, output_device='cuda:1').to('cuda')
 # load pretrained
 use_vgg(model, args.model_path, 'vgg19')
 
