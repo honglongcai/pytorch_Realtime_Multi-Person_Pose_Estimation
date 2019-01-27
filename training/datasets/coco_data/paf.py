@@ -45,10 +45,10 @@ def putVecMaps(centerA, centerB, accumulate_vec_map, count, params_transform):
     range_x = list(range(int(min_x), int(max_x), 1))
     range_y = list(range(int(min_y), int(max_y), 1))
     xx, yy = np.meshgrid(range_x, range_y)
-    ba_x = xx - centerA[0]  # the vector from (x,y) to centerA
+    ba_x = xx - centerA[0]
     ba_y = yy - centerA[1]
     limb_width = np.abs(ba_x * limb_vec_unit[1] - ba_y * limb_vec_unit[0])
-    mask = limb_width < thre  # mask is 2D
+    mask = limb_width < thre
 
     vec_map = np.copy(accumulate_vec_map) * 0.0
     vec_map[yy, xx] = np.repeat(mask[:, :, np.newaxis], 2, axis=2)
