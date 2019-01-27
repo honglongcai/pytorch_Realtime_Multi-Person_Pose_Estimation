@@ -150,7 +150,7 @@ def train(train_loader, model, optimizer, epoch):
         #for name, param in model.named_parameters():
         #    writer.add_histogram(name, param.clone().cpu().data.numpy(),i)        
         data_time.update(time.time() - end)
-        print('img size:', img.size())
+        #print('img size:', img.size())
 
         img = img.cuda()
         heatmap_target = heatmap_target.cuda()
@@ -277,42 +277,32 @@ print('val dataset len: {}'.format(len(valid_data.dataset)))
 
 # model
 model = rtpose_shufflenetV2.Network(width_multiplier=1.0)
-print('11.....')
 #model = encoding.nn.DataParallelModel(model, device_ids=args.gpu_ids)
 model = torch.nn.DataParallel(model).cuda()
-print('22.....')
 
  
 writer = SummaryWriter(log_dir=args.logdir)
-print('33.....')
-                                                                                          
+
 
 trainable_vars = [param for param in model.parameters() if param.requires_grad]
-print('44.....')
 optimizer = torch.optim.SGD(trainable_vars, lr=args.lr,
                            momentum=args.momentum,
                            weight_decay=args.weight_decay,
                            nesterov=args.nesterov)          
-print('55.....')
 lr_scheduler = ReduceLROnPlateau(optimizer, mode='min', factor=0.8, patience=5, verbose=True, threshold=0.0001, threshold_mode='rel', cooldown=3, min_lr=0, eps=1e-08)
 
 best_val_loss = np.inf
-print('66.....')
 
 model_save_filename = './network/weight/best_pose_ShuffleNetV2.pth'
 for epoch in range(args.epochs):
 
     # train for one epoch
-    print('77.....')
     train_loss = train(train_data, model, optimizer, epoch)
-    print('88.....')
     # evaluate on validation set
     val_loss = validate(valid_data, model, epoch)   
-    print('99.....')
     writer.add_scalars('data/scalar_group', {'train loss': train_loss,
                                              'val loss': val_loss}, epoch)
-    print('10.....')
-    lr_scheduler.step(val_loss)                        
+    lr_scheduler.step(val_loss)
     
     is_best = val_loss<best_val_loss
     best_val_loss = max(val_loss, best_val_loss)

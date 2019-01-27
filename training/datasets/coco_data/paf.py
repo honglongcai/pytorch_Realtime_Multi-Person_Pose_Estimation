@@ -18,7 +18,7 @@ from scipy import misc, ndimage
 def putVecMaps(centerA, centerB, accumulate_vec_map, count, params_transform):
     centerA = centerA.astype(float)
     centerB = centerB.astype(float)
-    print(params_transform)
+    #print(params_transform)
     stride = params_transform['stride']
     crop_size_y = params_transform['crop_size_y']
     crop_size_x = params_transform['crop_size_x']
