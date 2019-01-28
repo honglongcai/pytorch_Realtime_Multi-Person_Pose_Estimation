@@ -166,7 +166,8 @@ def train(train_loader, model, optimizer, epoch):
         paf_mask = paf_mask.to('cuda:1')
         
         # compute output
-        _,saved_for_loss = model(img)
+        #_,saved_for_loss = model(img)
+        saved_for_loss = model(img)
         
         total_loss, saved_for_log = get_loss(saved_for_loss, heatmap_target, heat_mask,
                paf_target, paf_mask)
@@ -222,7 +223,8 @@ def validate(val_loader, model, epoch):
             paf_mask = paf_mask.to('cuda:1')
         
             # compute output
-            _,saved_for_loss = model(img)
+            #_,saved_for_loss = model(img)
+            saved_for_loss = model(img)
         
             total_loss, saved_for_log = get_loss(saved_for_loss, heatmap_target, heat_mask,
                    paf_target, paf_mask)
