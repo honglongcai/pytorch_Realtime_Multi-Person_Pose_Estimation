@@ -196,8 +196,8 @@ def get_model(trunk='vgg19'):
             saved_for_loss.append(out6_1)
             saved_for_loss.append(out6_2)
 
-            #return (out6_1, out6_2), saved_for_loss
-            return saved_for_loss
+            return (out6_1, out6_2), saved_for_loss
+            #return saved_for_loss
 
         def _initialize_weights_norm(self):
 

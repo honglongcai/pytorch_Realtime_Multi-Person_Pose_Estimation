@@ -166,8 +166,8 @@ def train(train_loader, model, optimizer, epoch):
         paf_mask = paf_mask.to('cuda:1')
         
         # compute output
-        #_,saved_for_loss = model(img)
-        saved_for_loss = model(img)
+        _,saved_for_loss = model(img)
+        #saved_for_loss = model(img)
         
         total_loss, saved_for_log = get_loss(saved_for_loss, heatmap_target, heat_mask,
                paf_target, paf_mask)
@@ -223,8 +223,8 @@ def validate(val_loader, model, epoch):
             paf_mask = paf_mask.to('cuda:1')
         
             # compute output
-            #_,saved_for_loss = model(img)
-            saved_for_loss = model(img)
+            _,saved_for_loss = model(img)
+            #saved_for_loss = model(img)
         
             total_loss, saved_for_log = get_loss(saved_for_loss, heatmap_target, heat_mask,
                    paf_target, paf_mask)
@@ -283,7 +283,7 @@ print('val dataset len: {}'.format(len(valid_data.dataset)))
 # model
 model = get_model(trunk='vgg19')
 #model = encoding.nn.DataParallelModel(model, device_ids=args.gpu_ids)
-model = torch.nn.DataParallel(model, output_device=torch.device('cuda:1')).to('cuda')
+model = torch.nn.DataParallel(model, output_device=torch.device('cuda:1').index).to('cuda')
 # load pretrained
 use_vgg(model, args.model_path, 'vgg19')
 
