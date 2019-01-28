@@ -289,10 +289,11 @@ use_vgg(model, args.model_path, 'vgg19')
 
 
 # Fix the VGG weights first, and then the weights will be released
+'''
 for i in range(23):
     for param in model.module.model0[i].parameters():
         param.requires_grad = False
-
+'''
 trainable_vars = [param for param in model.parameters() if param.requires_grad]
 optimizer = torch.optim.SGD(trainable_vars, lr=args.lr,
                            momentum=args.momentum,
