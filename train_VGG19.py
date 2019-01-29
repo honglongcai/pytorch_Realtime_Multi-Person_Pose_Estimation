@@ -295,6 +295,7 @@ for i in range(23):
         param.requires_grad = False
 
 trainable_vars = [param for param in model.parameters() if param.requires_grad]
+print(len(trainable_vars))
 optimizer = torch.optim.SGD(trainable_vars, lr=args.lr,
                            momentum=args.momentum,
                            weight_decay=args.weight_decay,
@@ -316,7 +317,8 @@ for param in model.module.parameters():
     param.requires_grad = True
 
 trainable_vars = [param for param in model.parameters() if param.requires_grad]
-optimizer = torch.optim.SGD(trainable_vars, lr=args.lr,
+print(len(trainable_vars))
+optimizer = torch.optim.SGD(model.parameters(), lr=args.lr,
                            momentum=args.momentum,
                            weight_decay=args.weight_decay,
                            nesterov=args.nesterov)          
