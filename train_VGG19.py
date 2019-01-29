@@ -323,7 +323,7 @@ optimizer = torch.optim.SGD(model.parameters(), lr=args.lr,
                            weight_decay=args.weight_decay,
                            nesterov=args.nesterov)          
                                                     
-lr_scheduler = ReduceLROnPlateau(optimizer, mode='min', factor=0.8, patience=5, verbose=True, threshold=0.0001, threshold_mode='rel', cooldown=3, min_lr=0, eps=1e-08)
+lr_scheduler = ReduceLROnPlateau(optimizer, mode='min', factor=0.8, patience=3, verbose=True, threshold=0.0001, threshold_mode='rel', cooldown=0, min_lr=0, eps=1e-08)
 
 best_val_loss = np.inf
 
