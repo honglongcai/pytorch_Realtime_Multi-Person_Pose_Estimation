@@ -271,7 +271,7 @@ print("Loading dataset...")
 train_data = get_loader(args.json_path, args.data_dir,
                         args.mask_dir, 368, 8,
                         'vgg', args.batch_size, params_transform = params_transform, 
-                        shuffle=True, training=True, num_workers=8)
+                        shuffle=True, training=True, num_workers=4)
 print('train dataset len: {}'.format(len(train_data.dataset)))
 
 # validation data
