@@ -186,7 +186,7 @@ def train(train_loader, model, optimizer, epoch):
         end = time.time()
         if i % args.print_freq == 0:
             print_string = 'Epoch: [{0}][{1}/{2}]\t'.format(epoch, i, len(train_loader))
-            print_string +='Data time {data_time.val:.3f} ({data_time.avg:.3f})\t'.format( data_time=data_time)
+            #print_string +='Data time {data_time.val:.3f} ({data_time.avg:.3f})\t'.format( data_time=data_time)
             print_string += 'Loss {loss.val:.4f} ({loss.avg:.4f})'.format(loss=losses)
 
             for name, value in meter_dict.items():
@@ -239,7 +239,7 @@ def validate(val_loader, model, epoch):
             end = time.time()
             if i % args.print_freq == 0:
                 print_string = 'Epoch: [{0}][{1}/{2}]\t'.format(epoch, i, len(val_loader))
-                print_string +='Data time {data_time.val:.3f} ({data_time.avg:.3f})\t'.format( data_time=data_time)
+                #print_string +='Data time {data_time.val:.3f} ({data_time.avg:.3f})\t'.format( data_time=data_time)
                 print_string += 'Loss {loss.val:.4f} ({loss.avg:.4f})'.format(loss=losses)
 
                 for name, value in meter_dict.items():
