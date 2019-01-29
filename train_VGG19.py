@@ -303,7 +303,7 @@ optimizer = torch.optim.SGD(trainable_vars, lr=args.lr,
  
 writer = SummaryWriter(log_dir=args.logdir)       
                                                                                           
-for epoch in range(5):
+for epoch in range(3):
     # train for one epoch
     train_loss = train(train_data, model, optimizer, epoch)
 
@@ -329,7 +329,7 @@ best_val_loss = np.inf
 
 
 model_save_filename = './network/weight/best_pose.pth'
-for epoch in range(5, args.epochs):
+for epoch in range(3, args.epochs):
 
     # train for one epoch
     train_loss = train(train_data, model, optimizer, epoch)
