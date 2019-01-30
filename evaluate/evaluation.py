@@ -1,7 +1,7 @@
 import unittest
 import torch
-from coco_eval import run_eval
-from ..network.rtpose_vgg import get_model, use_vgg
+from evaluate.coco_eval import run_eval
+from network.rtpose_vgg import get_model, use_vgg
 from torch import load
 
 #Notice, if you using the 
