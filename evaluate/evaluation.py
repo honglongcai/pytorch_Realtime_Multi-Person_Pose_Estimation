@@ -1,13 +1,13 @@
 import unittest
 import torch
-from evaluate.coco_eval import run_eval
-from network.rtpose_vgg import get_model, use_vgg
+from .coco_eval import run_eval
+from ..network.rtpose_vgg import get_model, use_vgg
 from torch import load
 
 #Notice, if you using the 
 with torch.autograd.no_grad():
     # this path is with respect to the root of the project
-    weight_name = './network/weight/best_pose.pth'
+    weight_name = '../network/weight/best_pose.pth'
     state_dict = torch.load(weight_name)
     model = get_model(trunk='vgg19')
     
